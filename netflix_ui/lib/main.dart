@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './ui_components/translucent_app_bar.dart';
+import 'package:netflix_ui/ui_components/translucent_app_bar.dart';
+import 'package:netflix_ui/ui_components/content_header.dart';
 
 void main() {
   runApp(MaterialApp(home: NetflixApp()));
@@ -29,8 +30,16 @@ class _NetflixAppState extends State<NetflixApp> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 50.0),
         child: TranslucentAppBar(offset: _offset),
@@ -44,9 +53,10 @@ class _NetflixAppState extends State<NetflixApp> {
         controller: _scrollController,
         slivers: [
           SliverToBoxAdapter(
-            child: Container(
-              height: 800,
-              color: Colors.blue,
+            child: Column(
+              children: [
+                ContentHeader(),
+              ],
             ),
           )
         ],
