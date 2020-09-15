@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:netflix_ui/ui_components/translucent_app_bar.dart';
 import 'package:netflix_ui/ui_components/content_header.dart';
+import 'package:netflix_ui/ui_components/previews.dart';
+import 'package:netflix_ui/ui_components/contents.dart';
 
 void main() {
   runApp(MaterialApp(home: NetflixApp()));
@@ -58,8 +60,35 @@ class _NetflixAppState extends State<NetflixApp> {
                 ContentHeader(),
               ],
             ),
-          )
+          ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            sliver: SliverToBoxAdapter(
+              child: Previews(),
+            ),
+          ),
+          _Section(title: 'Movies', isExpanded: false,),
+          _Section(title: 'Originals', isExpanded: true,),
+          _Section(title: 'Series', isExpanded: false,),
         ],
+      ),
+    );
+  }
+}
+
+class _Section extends StatelessWidget {
+
+  final String title;
+  final bool isExpanded;
+
+  _Section({@required this.title, @required this.isExpanded});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(vertical: 20),
+      sliver: SliverToBoxAdapter(
+        child: Contents(title: title, isExpanded: isExpanded),
       ),
     );
   }

@@ -8,12 +8,14 @@ class HeaderPlayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      child: Container(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(4.0))),
+      child: MaterialButton(
+        onPressed: onTap,
         padding: EdgeInsets.fromLTRB(20, 8, 28, 8),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(4.0))),
         child: Row(
           children: [
             Icon(
